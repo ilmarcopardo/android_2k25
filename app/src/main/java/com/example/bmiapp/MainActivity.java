@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onDestroyActionMode(ActionMode mode) {
-            mActionModeCallback = null;
+            mActionMode = null;
         }
     };
     ActionMode mActionMode;
