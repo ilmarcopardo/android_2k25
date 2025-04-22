@@ -1,6 +1,7 @@
 package com.example.bmiapp;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -9,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -31,13 +33,14 @@ public class TabellaActivity extends AppCompatActivity {
             return insets;
         });
 
+
         List<BmiCategory> bmiList = new ArrayList<>();
-        bmiList.add(new BmiCategory("Sottopeso", "< 18.5"));
-        bmiList.add(new BmiCategory("Normopeso", "18.5 - 24.9"));
-        bmiList.add(new BmiCategory("Sovrappeso", "25 - 29.9"));
-        bmiList.add(new BmiCategory("Obesità I grado", "30 - 34.9"));
-        bmiList.add(new BmiCategory("Obesità II grado", "35 - 39.9"));
-        bmiList.add(new BmiCategory("Obesità III grado", "≥ 40"));
+        bmiList.add(new BmiCategory("Sottopeso", "< 18.5", R.drawable.stickman));
+        bmiList.add(new BmiCategory("Normopeso", "18.5 - 24.9", R.drawable.stickman));
+        bmiList.add(new BmiCategory("Sovrappeso", "25 - 29.9", R.drawable.stickman));
+        bmiList.add(new BmiCategory("Obesità I grado", "30 - 34.9", R.drawable.stickman));
+        bmiList.add(new BmiCategory("Obesità II grado", "35 - 39.9", R.drawable.stickman));
+        bmiList.add(new BmiCategory("Obesità III grado", "≥ 40", R.drawable.stickman));
 
         // get the intent
         Intent intent = getIntent();
@@ -48,10 +51,14 @@ public class TabellaActivity extends AppCompatActivity {
         textViewBMI.setText(String.format("%.2f", BMI));
 
         // handle recycler view
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView = findViewById(R.id.bmiRecyclerView);
         adapter = new BmiItemAdapter(this, bmiList);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(adapter);
+
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), linearLayoutManager.getOrientation());
+        recyclerView.addItemDecoration(dividerItemDecoration);
 
     }
 }

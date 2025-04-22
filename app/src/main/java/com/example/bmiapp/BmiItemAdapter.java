@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,8 +26,7 @@ public class BmiItemAdapter extends RecyclerView.Adapter<BmiItemAdapter.BmiViewH
     @Override
     public BmiViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = inflater.inflate(R.layout.bmi_item, parent, false);
-        BmiViewHolder bmiViewHolder = new BmiViewHolder(v, this);
-        return bmiViewHolder;
+        return new BmiViewHolder(v, this);
     }
 
     @Override
@@ -34,6 +34,7 @@ public class BmiItemAdapter extends RecyclerView.Adapter<BmiItemAdapter.BmiViewH
         BmiCategory item = bmiList.get(position);
         holder.textCategoria.setText(item.getCategoria());
         holder.textRange.setText(item.getRange());
+        holder.imagePerson.setImageResource(item.getImmagineResId());
     }
 
     @Override
@@ -44,6 +45,7 @@ public class BmiItemAdapter extends RecyclerView.Adapter<BmiItemAdapter.BmiViewH
     public class BmiViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView textCategoria;
         TextView textRange;
+        ImageView imagePerson;
         BmiItemAdapter adapter;
 
         public BmiViewHolder(@NonNull View itemView, BmiItemAdapter adapter) {
@@ -51,6 +53,7 @@ public class BmiItemAdapter extends RecyclerView.Adapter<BmiItemAdapter.BmiViewH
             this.adapter = adapter;
             textCategoria = itemView.findViewById(R.id.categoria_item);
             textRange = itemView.findViewById(R.id.range_item);
+            imagePerson = itemView.findViewById(R.id.image_item);
             itemView.setOnClickListener(this);
         }
 
