@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TabellaActivity extends AppCompatActivity {
+public class TabellaActivity extends AppCompatActivity implements OnBmiClickListener{
     double BMI;
     BmiItemAdapter adapter;
     RecyclerView recyclerView;
@@ -42,6 +42,15 @@ public class TabellaActivity extends AppCompatActivity {
         bmiList.add(new BmiCategory("Obesità II grado", "35 - 39.9", R.drawable.stickman));
         bmiList.add(new BmiCategory("Obesità III grado", "≥ 40", R.drawable.stickman));
 
+        List<BmiSuggestion> suggestionList = new ArrayList<>();
+        suggestionList.add(new BmiSuggestion("Sottopeso", R.drawable.stickman));
+        suggestionList.add(new BmiSuggestion("Normopeso", R.drawable.stickman));
+        suggestionList.add(new BmiSuggestion("Sovrappeso", R.drawable.stickman));
+        suggestionList.add(new BmiSuggestion("Obesità I grado", R.drawable.stickman));
+        suggestionList.add(new BmiSuggestion("Obesità II grado", R.drawable.stickman));
+        suggestionList.add(new BmiSuggestion("Obesità III grado", R.drawable.stickman));
+
+
         // get the intent
         Intent intent = getIntent();
         BMI = intent.getDoubleExtra("bmi", 0.0);
@@ -53,12 +62,18 @@ public class TabellaActivity extends AppCompatActivity {
         // handle recycler view
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView = findViewById(R.id.bmiRecyclerView);
-        adapter = new BmiItemAdapter(this, bmiList);
+        adapter = new BmiItemAdapter(this, bmiList, suggestionList);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(adapter);
 
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), linearLayoutManager.getOrientation());
         recyclerView.addItemDecoration(dividerItemDecoration);
 
+    }
+
+    @Override
+    public void onBmiClick(BmiSuggestion bmiSuggestion) {
+        SuggestionFragment suggestionFragment = SuggestionFragment.newInstance(bmiSuggestion);
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, suggestionFragment).addToBackStack(null).commit();
     }
 }

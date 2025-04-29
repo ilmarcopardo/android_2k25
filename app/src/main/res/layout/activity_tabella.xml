@@ -15,7 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.629" />
+        app:layout_constraintVertical_bias="0.577" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/bmiRecyclerView"
@@ -23,4 +23,14 @@
         android:layout_height="360dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerView"
+        android:name="com.example.bmiapp.SuggestionFragment"
+        android:layout_width="306dp"
+        android:layout_height="232dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="100dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bmiRecyclerView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

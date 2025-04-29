@@ -15,10 +15,13 @@ import java.util.List;
 
 public class BmiItemAdapter extends RecyclerView.Adapter<BmiItemAdapter.BmiViewHolder> {
     private List<BmiCategory> bmiList;
+    private List<BmiSuggestion> suggestionList;
     LayoutInflater inflater;
+    OnBmiClickListener listener;
 
-    public BmiItemAdapter(Context context, List<BmiCategory> bmiList){
+    public BmiItemAdapter(Context context, List<BmiCategory> bmiList, List<BmiSuggestion> suggestionList){
         this.bmiList=bmiList;
+        this.suggestionList = suggestionList;
         inflater = LayoutInflater.from(context);
     }
 
@@ -61,9 +64,7 @@ public class BmiItemAdapter extends RecyclerView.Adapter<BmiItemAdapter.BmiViewH
         public void onClick(View v) {
             int position = getAdapterPosition();
             if (position != RecyclerView.NO_POSITION){
-                BmiCategory item = adapter.bmiList.get(position);
-                Context context = v.getContext();
-                Toast.makeText(context, "Hai cliccato: "+item.getCategoria(), Toast.LENGTH_SHORT).show();
+                listener.onBmiClick(adapter.suggestionList.get(position));
             }
         }
     }
