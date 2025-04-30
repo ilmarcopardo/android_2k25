@@ -19,9 +19,10 @@ public class BmiItemAdapter extends RecyclerView.Adapter<BmiItemAdapter.BmiViewH
     LayoutInflater inflater;
     OnBmiClickListener listener;
 
-    public BmiItemAdapter(Context context, List<BmiCategory> bmiList, List<BmiSuggestion> suggestionList){
+    public BmiItemAdapter(Context context, List<BmiCategory> bmiList, List<BmiSuggestion> suggestionList, OnBmiClickListener onBmiClickListener){
         this.bmiList=bmiList;
         this.suggestionList = suggestionList;
+        this.listener = onBmiClickListener;
         inflater = LayoutInflater.from(context);
     }
 

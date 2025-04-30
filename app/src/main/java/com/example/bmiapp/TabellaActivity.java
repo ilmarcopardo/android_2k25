@@ -43,12 +43,12 @@ public class TabellaActivity extends AppCompatActivity implements OnBmiClickList
         bmiList.add(new BmiCategory("Obesità III grado", "≥ 40", R.drawable.stickman));
 
         List<BmiSuggestion> suggestionList = new ArrayList<>();
-        suggestionList.add(new BmiSuggestion("Sottopeso", R.drawable.stickman));
-        suggestionList.add(new BmiSuggestion("Normopeso", R.drawable.stickman));
-        suggestionList.add(new BmiSuggestion("Sovrappeso", R.drawable.stickman));
-        suggestionList.add(new BmiSuggestion("Obesità I grado", R.drawable.stickman));
-        suggestionList.add(new BmiSuggestion("Obesità II grado", R.drawable.stickman));
-        suggestionList.add(new BmiSuggestion("Obesità III grado", R.drawable.stickman));
+        suggestionList.add(new BmiSuggestion("Sottopeso", R.drawable.bmi_image));
+        suggestionList.add(new BmiSuggestion("Normopeso", R.drawable.bmi_image));
+        suggestionList.add(new BmiSuggestion("Sovrappeso", R.drawable.bmi_image));
+        suggestionList.add(new BmiSuggestion("Obesità I grado", R.drawable.bmi_image));
+        suggestionList.add(new BmiSuggestion("Obesità II grado", R.drawable.bmi_image));
+        suggestionList.add(new BmiSuggestion("Obesità III grado", R.drawable.bmi_image));
 
 
         // get the intent
@@ -62,7 +62,7 @@ public class TabellaActivity extends AppCompatActivity implements OnBmiClickList
         // handle recycler view
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView = findViewById(R.id.bmiRecyclerView);
-        adapter = new BmiItemAdapter(this, bmiList, suggestionList);
+        adapter = new BmiItemAdapter(this, bmiList, suggestionList, this);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(adapter);
 
